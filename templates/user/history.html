@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="historyContainer">
+    <h1 class="p-2">Search History</h1>
+        <div class="SH shadow">
+        {% for key, value in products.items %}
+            {% for product in key %}
+                    {% include 'products/singleProduct.html' with item=product %}
+                {% endfor %}
+            <p class="shadow p-2">At time: {{ value }}</p>
+        {% endfor %}
+        </div>
+        </div>
+
+{% endblock %}

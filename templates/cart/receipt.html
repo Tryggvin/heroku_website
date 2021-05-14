@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+
+        <div class="receipt">
+            <div>
+                <div class="headReceipt">
+                    <h1>Thank You for your order!</h1>
+                </div>
+                <div class="receiptContent">
+                    <h2>Confirmation email has been sent to: {{ customer.email }}</h2>
+                    <h4>Order ID: {{ order.id }}</h4>
+                    <h4>Transaction ID: {{ transId }}</h4>
+                    <h4>Date: {{ order.dateOrdered }}</h4>
+                </div>
+
+            </div>
+        </div>
+{% endblock %}

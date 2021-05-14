@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% load static %}
+    <div class="limiter">
+    <div class="container-login100 ">
+    <div class="wrap-login100">
+<div class="login100-pic js-tilt" data-tilt>
+					<img src="{% static 'logoMakr-2rUmgb.png' %}" style="width:80%;" alt="IMG">
+				</div>
+    <form class="form form-horizontal login100-form" method="post">
+
+        {% csrf_token %}
+
+
+
+        <div class="login100-form ">
+            <h2 class="">Payment Information</h2>
+            <label for="id_cardOwner">CardOwner:</label>
+            <input type="text" name="cardOwner" {% if  info != '' %}value="{{ info.cardOwner }}" {% endif %}class="form_control input100 mb-2" autocomplete="off" maxlength="100" required="" id="id_cardOwner">
+            <label for="id_cardNumber">CardNumber:</label>
+            <input type="tel" name="cardNumber" {% if  info != '' %}value="{{ info.cardNumber }}" {% endif %} class="form_control input100 mb-2" autocomplete="off" inputmode="numeric" pattern="[0-9\s]{16,19}" autocomplete="cc-number" maxlength="19" placeholder="XXXX XXXX XXXX XXXX" required="" id="id_cardNumber">
+            <label for="id_expirationDateMonth">ExpirationDateMonth:</label>
+            <select name="expirationDateMonth"  class="form_control input100 mb-2" id="id_expirationDateMonth">
+                {% for i in month %}
+                    <option value="{{ forloop.counter }}"{% if  info != '' %}{% if forloop.counter == info.expirationDateMonth %} selected {% endif %} {% endif %}>{{ i }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="id_expirationDateYear">ExpirationDateYear:</label>
+            <select name="expirationDateYear" class="form_control input100 mb-2" id="id_expirationDateYear">
+                {% for i in year %}
+                    <option value="{{ i }}"{% if  info != '' %}{% if i == info.expirationDateYear %} selected {% endif %} {% endif %}>{{ i }}</option>
+                {% endfor %}
+
+            </select>
+            <label for="id_cvc">Cvc:</label>
+            <input type="tel" name="cvc" {% if  info != '' %}value="{{ info.cvc }}" {% endif %} class="form_control input100 mb-2" autocomplete="off" inputmode="numeric" pattern="[0-9\s]{3,3}" autocomplete="cvc" maxlength="3" placeholder="XXX" required="" id="id_cvc">
+            <input name="chrome-autofill-dummy1" style='display:none' disabled/>
+            <input name="chrome-autofill-dummy2" style='display:none' disabled/>
+
+
+
+
+            <input type="submit" class="btn-btn-primary login100-form-btn mb-2 paymentButton" value="Confirm" autocomplete="off" />
+            <a href="{% url "contact" %}">
+                <input type="button" class="btn  backButton" value="Back" name="back"/>
+            </a>
+
+        </div>
+    </form>
+    </div>
+    </div>
+    </div>
+
+
+{% endblock %}

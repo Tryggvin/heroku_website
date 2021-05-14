@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="reviewContainer">
+    <div id="reviewHeader">
+        <h2 id="reviewh2">Review Order</h2>
+    </div>
+    <div class="custInfoContainer">
+        <div class="customerInfo">
+            <div class="infoHeader">
+                <h4>shipping/billing address</h4>
+            </div>
+            <div class="infoContent">
+                <p><b>name:</b> {{ contact.name }}</p>
+                <p><b>streetname:</b> {{ contact.streetName }}</p>
+                <p><b>house number:</b> {{ contact.houseNumber }}</p>
+                <p><b>city:</b> {{ contact.city }}</p>
+                <p><b>country:</b> {{ contact.country }}</p>
+                <p><b>Postal code:</b> {{ contact.postalCode }}</p>
+            </div>
+            <a class="InfoUpdate" href="{% url 'contact' %}">
+                <input class="changeButton" type="button" value="Update">
+            </a>
+        </div>
+
+        <div class="customerInfo">
+            <div class="infoHeader">
+                <h4>Payment method</h4>
+            </div>
+            <div class="infoContent">
+                <p><b>Card owner:</b> {{ payment.cardOwner }}</p>
+                <p><b>Card Number ending with:</b> {{ creditCard }}</p>
+                <p><b>expiration Month:</b> {{ payment.expirationDateMonth }}</p>
+                <p><b>Expiration Year:</b> {{ payment.expirationDateYear }}</p>
+                <p><b>cvc:</b> *** </p>
+            </div>
+            <a class="InfoUpdate" href="{% url 'payment' %}">
+                <input class="changeButton" type="button" value="Change">
+            </a>
+        </div>
+    </div>
+
+
+        <div class="orderCart">
+            <div class="infoHeader">
+                <h4>Order Items</h4>
+            </div>
+            <div class="infoContent">
+                {% for item in order.getCartItems %}
+                    <div class="cartItems shadow">
+                        {% include 'cart/singleItemReview.html' with item=item %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    <div id="confirmOrderBox" class="customerInfo">
+            <div class="infoHeader">
+                <h4>Order</h4>
+            </div>
+            <div class="infoContent">
+                <p><b>Order Total:</b> {{ order.getCartTotal }} Kr</p>
+                <p><b>Items in order:</b> {{ order.getNumItems }} pc(s)</p>
+            </div>
+            <a class="InfoUpdate" href="#">
+                <form method="post">
+                    {% csrf_token %}
+                    <input class="confirmButton" type="submit"{% if order.getNumItems == 0 %} disabled {% endif %}{% if payment == None %} disabled {% endif %} {% if contact == None %} disabled {% endif %} value="Confirm Order">
+                </form>
+            </a>
+        </div>
+    </div>
+
+{% endblock %}

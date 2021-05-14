@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <!-- test    -->
+    <div class="searchDiv"  >
+        <form method="get">
+            <div>
+                {% if search == "" %}
+                    <input name="searchFilter" id="searchInput" type="text" placeholder="Search..." >
+                {% else %}
+                    <input name="searchFilter" id="searchInput" type="text" placeholder="Search..." value="{{ search }}">
+                {% endif %}
+                <input type="submit" id="searchButton" value="search"/>
+            </div>
+        <div class="subSearchDiv">
+        <div class="subsub">
+            <p id="filterSearch">Filter: </p>
+            <select id="selectValue" name="class" class="input100">
+                <option value disabled {% if superclassVal == "" %} selected {% endif %} />--select--</option>
+                {% for product in superclass %}
+                    <option class="optionSelected" value="{{ product.superclass }}" {% if superclassVal == product.superclass %} selected {% endif %}>{{ product.superclass }}</option>
+                {% endfor %}
+            </select>
+            <!-- subclass -->
+            <select id="selectSubclass" name="subclass" class="input100">
+                <option value disabled {% if subclassVal == "" %} selected {% endif %} />--select--</option>
+                {% if superclassVal != "" %}
+                    {% for product in subclasses %}
+                        <option class="optionSelected" value="{{ product.subclass }}" {% if subclassVal == product.subclass %} selected {% endif %}>{{ product.subclass }}</option>
+                    {% endfor %}
+                {% endif %}
+            </select>
+            </div>
+            <div class="subsub">
+                <p id="orderBy">Order by: </p>
+                <select name="orderBy" class="input100">
+                    <option selected value="name">Name</option>
+                    <option {% if orderBy != 'name' %} selected {% endif %} value="price">Price</option>
+                </select>
+                <select name="ascDesc" class="input100">
+                    <option selected value="">LOW-HIGH</option>
+                    <option {% if ascDesc == '-' %} selected {% endif %} value="-">HIGH-LOW</option>
+                </select>
+            </div>
+        </div>
+        </form>
+    </div>
+
+
+    <div class="products">
+        {% for product in products %}
+                {% include 'products/singleProduct.html' with product=product %}
+        {% endfor %}
+    </div>
+
+{% endblock %}

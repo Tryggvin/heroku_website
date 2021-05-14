@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <style>body{background-color: antiquewhite;}  footer{bottom:-32rem;}</style>
+    <div class="homePage">
+    <img src="{% static 'Logomakr-6xqpgv.png' %}"  class="homeLogo">
+    </div>
+
+    {% if test1 == string %}
+        <h1>WOW</h1>
+    {% endif %}
+
+    <div class="popular shadow">
+        <h1 style="text-align: center">Popular Items</h1>
+        {% for item in products %}
+            <div class="popularItems">
+                <a href="/products/{{ item.product_id }}">
+                    <img src="{{ item.product__image }}" class="popularImg" >
+                    <h5 class="popularText">{{ item.product__name }}</h5>
+                    <h6 class="popularText">{{ item.c }} people have this item!</h6>
+                </a>
+            </div>
+        {% endfor %}
+        <a class="nav-link btn px-auto viewAllProducts" href="{% url 'productsIndex' %}">View all products</a>
+    </div>
+
+{% endblock %}

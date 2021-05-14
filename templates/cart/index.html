@@ -1,0 +1,34 @@
+ {% extends "base.html" %}
+{% block content %}
+<div class="container">
+   <div class="card shopping-cart">
+            <div id="cartHeader" class="card-header text-light">
+                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                Shopping cart
+
+                <div class="clearfix"></div>
+            </div>
+            <div class="card-body">
+        {% for item in order.getCartItems %}
+            <div class="cartItems" >
+                {% include 'cart/singleRowItem.html' with item=item %}
+            </div>
+            {% endfor %}
+                <div class="pull-right">
+                    <a href="" class="btn btn-outline-secondary pull-right">
+                        Update shopping cart
+                    </a>
+                    <a href="{% url 'productsIndex' %}"><input type="button" class="btn  backButton" value="Continue Shopping" name="continueShopping" id="shopback"></a>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="pull-right" style="margin: 10px">
+                    <a href="{% url 'contact' %}" class="btn btn-success pull-right">Checkout</a>
+                    <div class="pull-right" style="margin: 5px">
+                        Total price: <b>{{ order.getCartTotal }}</b>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+{% endblock %}

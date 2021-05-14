@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<div class="limiter">
+    <div class="container-login100 ">
+<div class="wrap-login100">
+<div class="login100-pic js-tilt" data-tilt>
+					<img src="{% static 'logoMakr-2rUmgb.png' %}" style="width:80%;" alt="IMG">
+				</div>
+    <form id="form" class="login100-form" method="post">
+        {% csrf_token %}
+
+        {{ info.country.attname }}
+        <div class="login100-form">
+            <h2 class="">Contact information</h2>
+            <label for="id_name">Name:</label><input type="text" {% if  info != '' %}value="{{ info.name }}" {% endif %} name="name" class="form_control input100 mb-2" autocomplete="off" maxlength="100" required="" id="id_name">
+            <label for="id_streetName">StreetName:</label><input type="text" {% if  info != '' %}value="{{ info.streetName }}" {% endif %} name="streetName" class="form_control input100 mb-2" autocomplete="off" maxlength="100" required="" id="id_streetName">
+            <label for="id_houseNumber">HouseNumber:</label><input type="number" {% if  info != '' %}value="{{ info.houseNumber }}" {% endif %} name="houseNumber" class="form_control input100 mb-2" autocomplete="off" required="" id="id_houseNumber">
+            <label for="id_city">City:</label><input type="text" {% if  info != '' %}value="{{ info.city }}" {% endif %} name="city" class="form_control input100 mb-2" autocomplete="off" maxlength="100" required="" id="id_city">
+            <label for="id_country">Country:</label>
+            <select name="country" class="form_control input100 mb-2" required="" id="id_country" style="width:17rem;">
+            <option disabled selected >---------</option>
+      {% for key, value in countryDict.items %}
+                  <option value="{{ key }}"{% if key == info.country %} selected{% endif %}>{{ value }}</option>
+           {% endfor %}
+
+
+    </select>
+    <label for="id_postalCode">PostalCode:</label><input type="number" {% if  info != '' %}value="{{ info.postalCode }}" {% endif %} name="postalCode" class="form_control input100 mb-2" autocomplete="off" required="" id="id_postalCode">
+
+
+
+            <input type="submit" class="btn-btn-primary login100-form-btn mb-2" value="Continue" autocomplete="off" name="checkout"/>
+            <a href="{% url "cartIndex" %}">
+                <input type="button" class="btn  backButton" value="Back" name="back"/>
+            </a>
+        </div>
+    </form>
+    </div>
+    </div>
+
+    </form>
+ </div>
+{% endblock %}

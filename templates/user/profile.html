@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+        {% load static %}
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<div class="login100-pic js-tilt" data-tilt>
+					<img src="{% static 'logoMakr-2rUmgb.png' %}" alt="IMG">
+				</div>
+
+				<form class="login100-form validate-form mt-0" method="post">
+                    {%  csrf_token %}
+					<span class="">
+                        <h3>Edit Profile</h3>
+					</span>
+                    <div class="wrap-input100">
+                        {%  csrf_token %}
+                        Profile image
+                        <img src="{{ user.profile.profileImage }}" class="rounded-circle z-depth-0"
+            alt="avatar image" height="50" width="50" >
+                        <input type="text" class="input100 mt-2" name="profileImage" value="{{ profile.profileImage }}" maxlength="9999" required="" id="id_profileImage">
+                        First name
+                        <input type="text" class="input100" name="firstName" value="{{ profile.firstName }}" maxlength="100" required="" id="id_firstName">
+                        Last name
+                        <input type="text" class="input100" name="lastName" value="{{ profile.lastName }}" maxlength="100" required="" id="id_lastName">
+                    </div>
+
+
+					<div class="container">
+                        {%  csrf_token %}
+                        <button id="profileUpdate" class="login100-form-btn" type="Update" value="update">Confirm</botton>
+					</div>
+
+
+				</form>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+

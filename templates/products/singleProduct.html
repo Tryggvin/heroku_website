@@ -1,0 +1,18 @@
+<div class='container-fluid d-inline'>
+    <div id="proCard" class="card mx-auto col-10 mt-5" >
+        <a href="/products/{{ product.id }}">
+            <img class='img-fluid mt-2' src="{{ product.image }}"/>
+            <div class="text-center mx-auto ">
+                <h5 class="card-title font-weight-bold" style="color:black;">{{ product.name }}</h5>
+                <p class="card-text" style="color:black;">{{ product.price }} Kr</p>
+
+            </div>
+        </a>
+        <form method="post" name="myForm">
+            {% csrf_token %}
+            <input min="1" value={{ product.id }} type="number" name="id" class="hiddenIdValue">
+            <input type="button" href="" class="btn btn-success cart px-auto" value="ADD TO CART">
+        </form>
+    </div>
+</div>
+

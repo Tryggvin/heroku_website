@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<div class="login100-pic js-tilt" data-tilt>
+					<img src="{% static 'logoMakr-2rUmgb.png' %}" alt="IMG">
+				</div>
+
+				<form class="login100-form validate-form" method="post">
+                    {%  csrf_token %}
+					<span class="login100-form-title">
+						Create an account
+					</span>
+
+					<div class="wrap-input100">
+                        <h6>Username</h6>
+						<input id="usernameInput" class="input100" type="text" name="username">
+                        <input id="checkUsername" type="button" value="check availibility">
+                        <div id="userName">
+
+                        </div>
+					</div>
+
+					<div class="wrap-input100">
+                        <h6>First name</h6>
+						<input class="input100" type="text" name="first_name">
+					</div>
+
+                    <div class="wrap-input100">
+                        <h6>Last name</h6>
+						<input class="input100" type="text" name="last_name">
+					</div>
+
+                    <div class="wrap-input100">
+                        <h6>Email</h6>
+						<input class="input100" type="email" name="email">
+					</div>
+
+                    <div class="wrap-input100">
+                        <h6>Password</h6>
+						<input class="input100" type="password" name="password1">
+					</div>
+
+                    <div class="wrap-input100">
+                        <h6>Confirm password</h6>
+						<input class="input100" type="password" name="password2">
+					</div>
+
+					<div class="container-login100-form-btn">
+						<input class="login100-form-btn" type="submit" value="Register">
+					</div>
+                    <div class="text-center p-t-136">
+						<a class="txt2" href="{% url 'login' %}">
+							Already Have An Account? Sign in
+						</a>
+
+
+
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

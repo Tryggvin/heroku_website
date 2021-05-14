@@ -1,0 +1,36 @@
+                    <div class="row">
+                        <div class="col-12 col-sm-12 col-md-2 text-center">
+                                <img class="img-fluid" src="{{ item.product.image }}" alt="prewiew" width="120" height="80">
+                        </div>
+                        <div class="col-12 text-sm-center col-sm-12 text-md-left col-md-6">
+                            <h4 class="product-name"><strong>{{ item.product.name }}</strong></h4>
+                            <h4>
+                                <small>{{ item.product.description }}</small>
+                            </h4>
+                        </div>
+                        <div class="col-12 col-sm-12 text-sm-center col-md-4 text-md-right row">
+                            <div class="col-3 col-sm-3 col-md-6 text-md-right" style="padding-top: 5px">
+                                <h6><strong>{{ item.product.price }} <span class="text-muted">x</span></strong></h6>
+                            </div>
+                            <div class="col-4 col-sm-4 col-md-4">
+                                <div class="quantity">
+                                    <form method="post" action="{% url 'cartItem' item.id %}">
+                                    {% csrf_token %}
+
+                                    <input type="number" step="1" max="99" min="1" value="{{ item.quantity }}" title="Qty" class="qty"
+                                           size="4" name="quantity">
+                                        <input type="submit" value="✓" class="plus quantPlus" name="quantityIncrease">
+                                        </form>
+                                </div>
+                            </div>
+                            <div class="col-2 col-sm-2 col-md-2 text-right">
+                                <form method="post" action="{% url 'cartItem' item.id %}">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-xs" name="removeItem">
+                                    <i class="fa fa-trash" aria-hidden="true">x</i>
+                                </button>
+                                    </form>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="descBox">
+    <div class="detailImages">
+    <img class="detailImg" src= "{{ product.image }}"/>
+        <img class="detailImg" src= "{{ productDetails.image1 }}">
+        {% if productDetails.image2 != '' %}
+            <img class="detailImg" src= "{{ productDetails.image2 }}"/>
+            {% endif %}
+    </div>
+        <div class="desc">
+        <h1>{{ product.name }}</h1>
+    <p>{{ product.description }}</p>
+        <p>{{ product.price }}kr</p>
+            <p>{{ productDetails.description }}<p/>
+            <form method="post" name="myForm">
+                {% csrf_token %}
+                <input min="1" value={{ product.id }} type="number" name="id" class="hiddenIdValue">
+                <input type="button" href="" class="btn btn-success cart px-auto" value="ADD TO CART">
+            </form>
+        </div>
+
+            </div>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<div class="login100-pic js-tilt" data-tilt>
+					<img src="{% static 'logoMakr-2rUmgb.png' %}" alt="IMG">
+				</div>
+
+				<form class="login100-form validate-form" method="post">
+                    {%  csrf_token %}
+					<span class="">
+                        <h3>Member Login</h3>
+					</span>
+                    {{ form }}
+					<div class="wrap-input100">
+						<input class="input100" type="text" name="username" placeholder="Username">
+					</div>
+
+					<div class="wrap-input100">
+						<input class="input100" type="password" name="password" placeholder="Password">
+
+						</span>
+					</div>
+
+					<div class="container">
+                        <input class="login100-form-btn" type="submit">
+					</div>
+
+
+					<div class="text-center p-t-136">
+						<a class="txt2" href="{% url 'register' %}">
+							Create your Account
+						</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+{% endblock %}
